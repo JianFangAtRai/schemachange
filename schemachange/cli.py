@@ -323,6 +323,9 @@ class SnowflakeSchemachangeSession:
             "schema": get_snowflake_identifier_string(
                 config["snowflake_schema"], "snowflake_schema"
             ),
+            "host": get_snowflake_identifier_string(
+                config['snowflake_host'], "snowflake_host"
+            ),
             "application": _snowflake_application_name,
             "session_parameters": session_parameters,
             "insecure_mode": True,
