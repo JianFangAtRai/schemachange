@@ -1176,9 +1176,9 @@ def main(argv=sys.argv):
     )
     parser_deploy.add_argument(
         "--snowflake-host",
-        type = str,
-        help = 'The name of the snowflake host (e.g. snowflake.prod.us-west-2.aws.snowflakecomputing.com)',
-        required = False,
+        type=str,
+        help="The name of the snowflake host (e.g. snowflake.prod.us-west-2.aws.snowflakecomputing.com)",
+        required=False,
     )
     parser_deploy.add_argument(
         "-c",
