@@ -282,12 +282,6 @@ class SnowflakeSchemachangeSession:
         self.autocommit = config["autocommit"]
         self.verbose = config["verbose"]
         if self.set_connection_args():
-            _host = self.conArgs["host"]
-            if '%22' in _host:
-                escaped_host = _host.replace('%22', '')
-                self._q_set_sess_host = self._q_set_sess_host.replace(_host, escaped_host)
-                self.conArgs["host"] = escaped_host
-
             print(self._q_set_sess_role.format(**self.conArgs))
             print(self._q_set_sess_warehouse.format(**self.conArgs))
             print(self._q_set_sess_database.format(**self.conArgs))
@@ -328,9 +322,6 @@ class SnowflakeSchemachangeSession:
             "schema": get_snowflake_identifier_string(
                 config["snowflake_schema"], "snowflake_schema"
             ),
-            # "host": get_snowflake_identifier_string(
-            #     config["snowflake_host"], "snowflake_host"
-            # ),
             "host": config["snowflake_host"],
             "application": _snowflake_application_name,
             "session_parameters": session_parameters,
