@@ -281,6 +281,10 @@ class SnowflakeSchemachangeSession:
         self.oauth_config = config["oauth_config"]
         self.autocommit = config["autocommit"]
         self.verbose = config["verbose"]
+        _host = self.conArgs["host"]
+        escaped_host = _host.replace('%22', '')
+        self._q_set_sess_host = self._q_set_sess_host.replace(_host, escaped_host)
+        self.conArgs["host"] = escaped_host
         if self.set_connection_args():
             print(self._q_set_sess_role.format(**self.conArgs))
             print(self._q_set_sess_warehouse.format(**self.conArgs))
