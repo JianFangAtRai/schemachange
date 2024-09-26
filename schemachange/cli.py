@@ -1,7 +1,7 @@
 import argparse
 import hashlib
 import json
-import logging
+# import logging
 import os
 import pathlib
 import re
@@ -272,6 +272,7 @@ class SnowflakeSchemachangeSession:
     _q_set_sess_database = "USE DATABASE IDENTIFIER('{database}');"
     _q_set_sess_schema = "USE SCHEMA IDENTIFIER('{schema}');"
     _q_set_sess_warehouse = "USE WAREHOUSE IDENTIFIER('{warehouse}');"
+    _q_set_sess_host = "USE HOST IDENTIFIER('{host}');"
     # endregion Query Templates
 
     def __init__(self, config):
@@ -281,13 +282,14 @@ class SnowflakeSchemachangeSession:
         self.oauth_config = config["oauth_config"]
         self.autocommit = config["autocommit"]
         self.verbose = config["verbose"]
-        logger = logging.getLogger(__name__)
+        # logger = logging.getLogger(__name__)
         if self.set_connection_args():
-            logging.info("Connecting to Snowflake with the following parameters: %s" % self.conArgs)
+            # logging.info("Connecting to Snowflake with the following parameters: %s" % self.conArgs)
             print(self._q_set_sess_role.format(**self.conArgs))
             print(self._q_set_sess_warehouse.format(**self.conArgs))
             print(self._q_set_sess_database.format(**self.conArgs))
             print(self._q_set_sess_schema.format(**self.conArgs))
+            print(self._q_set_sess_host.format(**self.conArgs))
             self.con = snowflake.connector.connect(**self.conArgs)
             print(
                 _log_current_session_id.format(current_session_id=self.con.session_id)
