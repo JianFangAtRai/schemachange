@@ -1,7 +1,6 @@
 import argparse
 import hashlib
 import json
-# import logging
 import os
 import pathlib
 import re
@@ -282,9 +281,7 @@ class SnowflakeSchemachangeSession:
         self.oauth_config = config["oauth_config"]
         self.autocommit = config["autocommit"]
         self.verbose = config["verbose"]
-        # logger = logging.getLogger(__name__)
         if self.set_connection_args():
-            # logging.info("Connecting to Snowflake with the following parameters: %s" % self.conArgs)
             print(self._q_set_sess_role.format(**self.conArgs))
             print(self._q_set_sess_warehouse.format(**self.conArgs))
             print(self._q_set_sess_database.format(**self.conArgs))
